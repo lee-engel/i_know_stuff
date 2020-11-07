@@ -5,17 +5,22 @@ from django.db import migrations
 
 def create_skeleton_menu(apps, schema_editor):
     categories = [
-        ('Breakfast', 'Breakfast served unil 11am.'),
-        ('Lunch', 'Lunch available from 11am.'),
-        ('Drinks', 'Hot and cold drinks.'),
-        ('Snacks', 'Variety of snacks available.'),
-        ('Bakery', 'Fresh baked every day.'),
+        (1, 'Breakfast', 'Breakfast served unil 11am.'),
+        (2, 'Lunch', 'Lunch available from 11am.'),
+        (3, 'Drinks', 'Hot and cold drinks.'),
+        (4, 'Snacks', 'Variety of snacks available.'),
+        (5, 'Bakery', 'Fresh baked every day.'),
     ]
 
-    for (name, description) in categories:
+    for (id, name, description) in categories:
         MenuCategory = apps.get_model('frontend', 'MenuCategory')
-        mc = MenuCategory(name=name, description=description)
+        mc = MenuCategory(id=id, name=name, description=description)
         mc.save()
+
+
+def delete_menu(apps, schema_editor):
+    MenuCategory = apps.get_model('frontend', 'MenuCategory')
+    MenuCategory.objects.all().delete()
 
 
 class Migration(migrations.Migration):
@@ -25,5 +30,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(create_skeleton_menu),
+        migrations.RunPython(create_skeleton_menu, delete_menu),
     ]
