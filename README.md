@@ -14,7 +14,7 @@
  
  # Python
  * [captivedns](Python/captivedns) - This project demonstrates OOP, the factory pattern and networking. Circa 2015
- * [sendfood](Python/sendfood) - A food ordering web page. Django.
+ * [sendfood](Python/sendfood) - A food ordering web page. Django (including fixtures)
   
  
  

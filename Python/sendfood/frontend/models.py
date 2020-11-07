@@ -48,7 +48,7 @@ class Order(models.Model):
     mdate = models.DateTimeField(auto_now=True)
 
 
-class OrderItems(models.Model):
+class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     final_price = models.DecimalField(max_digits=4, decimal_places=2)
