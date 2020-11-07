@@ -8,7 +8,12 @@ class MenuCategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
 
 
-admin.site.register(MenuItem)
+@admin.register(MenuItem)
+class MenuCategoryAdmin(admin.ModelAdmin):
+    fields = ('item_name', 'description', 'is_available', 'price', 'special_price')
+    list_display = ('item_name', 'description', 'is_available', 'price', 'special_price')
+
+
 admin.site.register(Order)
 admin.site.register(OrderItem)
 admin.site.register(UserProfile)

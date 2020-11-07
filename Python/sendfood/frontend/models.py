@@ -17,6 +17,9 @@ class MenuCategory(models.Model):
     name = models.CharField(max_length=16, unique=True)
     description = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.name
+
 
 class MenuItem(models.Model):
     item_name = models.CharField(max_length=64, unique=True)
@@ -24,7 +27,10 @@ class MenuItem(models.Model):
     description = models.CharField(max_length=200)
     is_available = models.BooleanField(default=True)
     price = models.DecimalField(max_digits=4, decimal_places=2)
-    special_price = models.DecimalField(max_digits=4, decimal_places=2)
+    special_price = models.DecimalField(max_digits=4, decimal_places=2, blank=True, default=0)
+
+    def __str__(self):
+        return self.item_name
 
 
 class Cart(models.Model):
@@ -34,6 +40,8 @@ class Cart(models.Model):
     cdate = models.DateTimeField(auto_now_add=True)
     mdate = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.user.username
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
