@@ -7,8 +7,9 @@ ORDER_STATES = [('New', 'New'), ('Making', 'Making'), ('Out', 'Out'),
                 ('Cancelled', 'Cancelled'), ('Delivered', 'Delivered')]
 
 
-class UserAddress(models.Model):
+class UserProfile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    cell_number = models.CharField(max_length=16)
     last_address = models.CharField(max_length=250)
 
 
