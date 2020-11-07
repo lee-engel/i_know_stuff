@@ -12,7 +12,6 @@
  * Phone number +27 84 203 7868
  * Email onelovegroupza@gmail.com
  
-Some topics:
- * Twisted. See https://github.com/spoonkode/captivedns
- * Django
- * ZMQ
+ # Python
+ [captivedns](Python/captivedns) - This project will demonstrate OOP, factory pattern and networking.
+ 
