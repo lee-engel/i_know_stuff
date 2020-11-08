@@ -10,8 +10,8 @@ class MenuCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(MenuItem)
 class MenuCategoryAdmin(admin.ModelAdmin):
-    fields = ('item_name', 'description', 'is_available', 'price', 'special_price')
-    list_display = ('item_name', 'description', 'is_available', 'price', 'special_price')
+    fields = ('item_name', 'category', 'description', 'is_available', 'price', 'special_price')
+    list_display = ('item_name', 'category', 'description', 'is_available', 'price', 'special_price')
 
 
 admin.site.register(Order)
