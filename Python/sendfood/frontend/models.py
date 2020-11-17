@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-DELIVERY_OPTIONS = [('Deliver', 'Collect')]
+DELIVERY_OPTIONS = [('Deliver', 'Deliver'), ('Collect', 'Collect')]
 PAYMENT_OPTIONS = [('Cash', 'Cash'), ('Card', 'Card')]
 ORDER_STATES = [('New', 'New'), ('Making', 'Making'), ('Out', 'Out'),
                 ('Cancelled', 'Cancelled'), ('Delivered', 'Delivered')]
@@ -11,6 +11,9 @@ class UserProfile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     cell_number = models.CharField(max_length=16)
     last_address = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.user.username
 
 
 class MenuCategory(models.Model):
@@ -28,9 +31,9 @@ class MenuItem(models.Model):
     is_available = models.BooleanField(default=True)
     price = models.DecimalField(max_digits=4, decimal_places=2)
     special_price = models.DecimalField(max_digits=4, decimal_places=2, blank=True, default=0)
-    item_image_1 = models.ImageField()
-    item_image_2 = models.ImageField()
-    item_image_3 = models.ImageField()
+    item_image_1 = models.ImageField("Image #1")
+    item_image_2 = models.ImageField("Image #2")
+    item_image_3 = models.ImageField("Image #3")
 
     def __str__(self):
         return self.item_name
@@ -51,17 +54,23 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     delivery_option = models.CharField(max_length=16, choices=DELIVERY_OPTIONS)
     delivery_address = models.CharField(max_length=250)
-    order_total = models.DecimalField(max_digits=4, decimal_places=2)
-    tip_total = models.DecimalField(max_digits=4, decimal_places=2)
-    notes = models.CharField(max_length=150)
+    order_total = models.DecimalField(max_digits=11, decimal_places=2, default=0.00)
+    tip_total = models.DecimalField(max_digits=11, decimal_places=2, default=0.00)
+    notes = models.CharField(max_length=150, blank=True)
     payment_method = models.CharField(max_length=32, choices=PAYMENT_OPTIONS)
     order_state = models.CharField(max_length=32, choices=ORDER_STATES)
     cdate = models.DateTimeField(auto_now_add=True)
     mdate = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.user.username
 
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     final_price = models.DecimalField(max_digits=4, decimal_places=2)
-    notes = models.CharField(max_length=150)
+    notes = models.CharField(max_length=150, blank=True)
+
+    def __str__(self):
+        return "{} {}".format(self.order.user.username, self.item.item_name)
