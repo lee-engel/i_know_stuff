@@ -11,6 +11,8 @@
  * Resides in Cape Town, South Africa
  * Phone number +27 84 203 7868
  * Email onelovegroupza@gmail.com
+ * [View my CV](https://docs.google.com/document/d/1BlIxs2OTqLkBKqksdQCJZA8mrOCvBmnvb7AEdfB3WZQ/edit?usp=sharing)
+ 
  
  # Projects
  * [captivedns](Python/captivedns) - DNS server. Python, Twisted. This project demonstrates OOP, 
