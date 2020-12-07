@@ -1,0 +1,14 @@
+FROM ubuntu
+ENV TZ=Africa/Johannesburg
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN apt-get update
+RUN apt-get install -y php php-fpm vim less curl
+RUN a2enmod proxy_fcgi setenvif
+RUN a2enconf php7.4-fpm
+RUN rm /var/www/html/index.html
+RUN echo "<?php phpinfo(); ?>" > /var/www/html/index.php
+RUN sed -i '/# Global configuration/a ServerName server.kode.co.za' /etc/apache2/apache2.conf
+
+#ENTRYPOINT ["/usr/sbin/apache2", "-k", "start"]
+EXPOSE 80
+CMD /usr/sbin/apachectl -D FOREGROUND
