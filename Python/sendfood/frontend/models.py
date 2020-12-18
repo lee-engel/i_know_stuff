@@ -31,9 +31,9 @@ class MenuItem(models.Model):
     is_available = models.BooleanField(default=True)
     price = models.DecimalField(max_digits=4, decimal_places=2)
     special_price = models.DecimalField(max_digits=4, decimal_places=2, blank=True, default=0)
-    item_image_1 = models.ImageField("Image #1")
-    item_image_2 = models.ImageField("Image #2")
-    item_image_3 = models.ImageField("Image #3")
+    item_image_1 = models.ImageField("Image #1", blank=True)
+    item_image_2 = models.ImageField("Image #2", blank=True)
+    item_image_3 = models.ImageField("Image #3", blank=True)
 
     def __str__(self):
         return self.item_name
@@ -74,3 +74,12 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.order.user.username, self.item.item_name)
+
+
+class Payment(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    payment_amount = models.DecimalField(max_digits=11, decimal_places=2, default=0.00)
+    payment_method = models.CharField(max_length=32, choices=PAYMENT_OPTIONS)
+    notes = models.CharField(max_length=150, blank=True)
+    cdate = models.DateTimeField(auto_now_add=True)
+    mdate = models.DateTimeField(auto_now=True)
