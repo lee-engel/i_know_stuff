@@ -31,9 +31,9 @@ class MenuItem(models.Model):
     is_available = models.BooleanField(default=True)
     price = models.DecimalField(max_digits=4, decimal_places=2)
     special_price = models.DecimalField(max_digits=4, decimal_places=2, blank=True, default=0)
-    item_image_1 = models.ImageField("Image #1")
-    item_image_2 = models.ImageField("Image #2")
-    item_image_3 = models.ImageField("Image #3")
+    item_image_1 = models.ImageField("Image #1", blank=True)
+    item_image_2 = models.ImageField("Image #2", blank=True)
+    item_image_3 = models.ImageField("Image #3", blank=True)
 
     def __str__(self):
         return self.item_name
