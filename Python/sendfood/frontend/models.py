@@ -74,3 +74,12 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.order.user.username, self.item.item_name)
+
+
+class Payment(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    payment_amount = models.DecimalField(max_digits=11, decimal_places=2, default=0.00)
+    payment_method = models.CharField(max_length=32, choices=PAYMENT_OPTIONS)
+    notes = models.CharField(max_length=150, blank=True)
+    cdate = models.DateTimeField(auto_now_add=True)
+    mdate = models.DateTimeField(auto_now=True)
