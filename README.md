@@ -16,8 +16,7 @@
  # Projects
  * [captivedns](Python/captivedns) - DNS server. Python, Twisted. This project demonstrates OOP, 
  the factory pattern and networking. Circa 2015
- * [sendfood](Python/sendfood) - A food ordering web page. Python and Django.
- 
+ * [sendfood](Python/sendfood) - A food ordering web page. Python and Django. Work in progress...
  # Assignments
  * [Docker Assignment](Docker/Assignment_1) -  A dockerfile I had to create for an assignment.
  
