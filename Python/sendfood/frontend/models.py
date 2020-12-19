@@ -29,8 +29,8 @@ class MenuItem(models.Model):
     category = models.ForeignKey(MenuCategory, on_delete=models.CASCADE)
     description = models.CharField(max_length=200)
     is_available = models.BooleanField(default=True)
-    price = models.DecimalField(max_digits=4, decimal_places=2)
-    special_price = models.DecimalField(max_digits=4, decimal_places=2, blank=True, default=0)
+    price = models.DecimalField(max_digits=11, decimal_places=2)
+    special_price = models.DecimalField(max_digits=11, decimal_places=2, blank=True, default=0)
     item_image_1 = models.ImageField("Image #1", upload_to='frontend/static/menu', blank=True)
     item_image_2 = models.ImageField("Image #2", upload_to='frontend/static/menu', blank=True)
     item_image_3 = models.ImageField("Image #3", upload_to='frontend/static/menu', blank=True)
@@ -69,7 +69,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
-    final_price = models.DecimalField(max_digits=4, decimal_places=2)
+    final_price = models.DecimalField(max_digits=11, decimal_places=2)
     notes = models.CharField(max_length=150, blank=True)
 
     def __str__(self):
